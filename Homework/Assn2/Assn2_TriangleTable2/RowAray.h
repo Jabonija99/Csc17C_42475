@@ -15,15 +15,15 @@
 #define ROWARAY_H
 
 class RowAray{
-private:
-    int size;
-    int *rowData;
-    
-public:
-    RowAray(int);
-    ~RowAray();
-    int getSize(){return size;}
-    int getData(int i){return rowData[i];}
+    private:
+        int size;
+        int *rowData;
+
+    public:
+        RowAray(int);
+        ~RowAray();
+        int getSize(){return size;}
+        int getData(int i){return rowData[i];}
 
 };
 

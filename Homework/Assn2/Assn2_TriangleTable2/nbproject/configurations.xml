@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>RowAray.h</itemPath>
       <itemPath>Table.h</itemPath>
+      <itemPath>Triangle.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,6 +15,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>RowAray.cpp</itemPath>
+      <itemPath>Table.cpp</itemPath>
+      <itemPath>Triangle.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -38,9 +42,17 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="RowAray.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="RowAray.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Table.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Table.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Triangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Triangle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -65,9 +77,17 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="RowAray.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="RowAray.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Table.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Table.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Triangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Triangle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
