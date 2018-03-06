@@ -1,0 +1,43 @@
+
+main{
+	string ans;
+	cout <<"Would you like to play?\n";
+	cin >> ans;
+	while(ans == 'y' || ans == 'Y'){
+		cout <<"New Game!\n";
+		bool gameover = false;
+		int guess=0, guesses=0, number = 25;	
+		
+		while (!gameover){
+			cout <<"Guess number:";
+			cin >> guess;
+			
+			if(guess == number){
+				cout << "You win!\n";
+				gameover = true;
+			}
+			else if(guess < number){
+				cout <<"Too low\n";
+				guesses++;
+			}
+			else if(guess > number){
+				cout <<"Too high\n";
+				guesses++;
+			}
+
+			if(guesses >= 3 && guess != number){
+				cout <<"You lose!\n";
+				gameover = true;
+			}	
+
+		}
+
+		cout << "Play again? (y/n)\n";
+		cin >> ans;
+		
+	}
+	
+	cout <<"Game Over";
+	
+
+}
