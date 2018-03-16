@@ -13,19 +13,22 @@
 
 #include "RowAray.h"
 
-RowAray::RowAray(unsigned int size){
+template <class T>
+RowAray<T>::RowAray(unsigned int size){
     if(size > 0){
         this->size = size;
-        rowData = new int[this->size];
+        this->rowData = new T[this->size];
     }
     
 }
 
-RowAray::~RowAray(){
-    delete rowData;
+template <class T>
+RowAray<T>::~RowAray(){
+    delete this->rowData;
 }
 
-void RowAray::setData(int index, int value){
-    if(index >=0 && index < size)
-        rowData[index] = value;
+template <class T>
+void RowAray<T>::setData(int index, T value){
+    if(index >=0 && index < this->size)
+        this->rowData[index] = value;
 }

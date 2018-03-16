@@ -14,13 +14,14 @@
 #ifndef ABSROW_H
 #define ABSROW_H
 
+template <class T>
 class AbsRow{
     protected:
         int size;
-        int *rowData;
+        T *rowData;
     public:
         virtual int getSize()const = 0;
-        virtual int getData(int)const = 0;
+        virtual T getData(int)const = 0;
 };
 
 #endif /* ABSROW_H */

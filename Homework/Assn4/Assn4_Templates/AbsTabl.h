@@ -16,15 +16,16 @@
 
 #include "RowAray.h"
 
+template <class T>
 class AbsTabl{
     protected:
         int szRow;
         int szCol;
-        RowAray **columns;
+        RowAray<T> **columns;
     public:
         virtual int getSzRow()const = 0;
         virtual int getSzCol()const = 0;
-        virtual int getData(int,int)const = 0;
+        virtual T getData(int,int)const = 0;
 };
 
 #endif /* ABSTABL_H */

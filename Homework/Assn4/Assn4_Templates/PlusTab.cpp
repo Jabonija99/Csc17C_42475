@@ -14,14 +14,14 @@
 #include "PlusTab.h"
 
 
-
-PlusTab PlusTab::operator+(const PlusTab &obj){
-    PlusTab sumTab(obj.szRow, obj.szCol);
+template <class T>
+PlusTab<T> PlusTab<T>::operator+(const PlusTab<T> &obj){
+    PlusTab<T> sumTab(obj.szRow, obj.szCol);
     
-    for(int i = 0; i < szRow; i++){
-        for(int j = 0 ; j < szCol; j++){
+    for(int i = 0; i < this->szRow; i++){
+        for(int j = 0 ; j < this->szCol; j++){
             //Get sum of objects
-            int sum = obj.getData(i,j)+columns[i]->getData(j);
+            T sum = obj.getData(i,j)+this->columns[i]->getData(j);
             
             //Set sum
             sumTab.columns[i]->setData(j, sum);

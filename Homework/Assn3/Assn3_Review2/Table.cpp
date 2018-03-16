@@ -61,7 +61,7 @@ Table::Table(const Table& obj){
 
 Table::~Table(){
     for(int i = 0; i < szRow; i++){
-        delete []columns[i];
+        delete columns[i];
     }
     delete []columns;
     
@@ -72,7 +72,7 @@ int Table::getData(int row, int col) const{
 }
 
 void Table::setData(int row, int col, int val){
-    if(row > 0 && row < szRow && col > 0 && col < szCol){
+    if(row >= 0 && row < szRow && col >= 0 && col < szCol){
         columns[row]->setData(col, val);
     }
 }

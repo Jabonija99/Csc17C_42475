@@ -16,10 +16,11 @@
 
 #include "Table.h"
 
-class PlusTab:public Table{
+template <class T>
+class PlusTab:public Table<T>{
     public:
-        PlusTab(unsigned int r,unsigned int c):Table(r,c){};
-        PlusTab operator+(const PlusTab &);
+        PlusTab(unsigned int r,unsigned int c):Table<T>(r,c){};
+        PlusTab<T> operator+(const PlusTab<T> &);
 };
 
 #endif /* PLUSTAB_H */

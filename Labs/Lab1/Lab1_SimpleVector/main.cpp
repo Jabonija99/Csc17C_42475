@@ -39,8 +39,6 @@ int main(int argc, char** argv) {
     cout <<"\nPush vector: (Array Max Size: " <<v.maxSz() <<")\n";
     output(v);
     
-            
-    
 
     return 0;
 }

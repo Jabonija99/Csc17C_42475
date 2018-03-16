@@ -16,15 +16,16 @@
 
 #include "AbsTabl.h"
 
-class Table:public AbsTabl{
+template <class T>
+class Table:public AbsTabl<T>{
     public:
         Table(unsigned int,unsigned int);
         Table(const Table &);
         virtual ~Table();
-        int getSzRow()const {return szRow;}
-        int getSzCol()const {return szCol;}
-        int getData(int,int)const;
-        void setData(int,int,int);
+        int getSzRow()const {return this->szRow;}
+        int getSzCol()const {return this->szCol;}
+        T getData(int,int)const;
+        void setData(int,int,T);
 };
 
 #endif /* TABLE_H */

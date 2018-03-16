@@ -16,15 +16,16 @@
 
 #include "AbsRow.h"
 
-class RowAray:public AbsRow{
+template <class T>
+class RowAray:public AbsRow<T>{
     public:
         RowAray(unsigned int);
         virtual ~RowAray();
-        int getSize()const{return size;}
-        int getData(int i)const{
-            if(i>=0&&i<size)return rowData[i];
+        int getSize()const{return this->size;}
+        T getData(int i)const{
+            if(i>=0&&i<this->size)return this->rowData[i];
             else return 0;}
-        void setData(int,int);
+        void setData(int,T);
 };
 
 #endif /* ROWARAY_H */

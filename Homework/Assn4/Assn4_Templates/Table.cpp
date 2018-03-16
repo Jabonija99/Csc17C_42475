@@ -14,65 +14,70 @@
 #include "Table.h"
 #include <cstdlib>
 
-Table::Table(unsigned int row, unsigned int col){
+template <class T>
+Table<T>::Table(unsigned int row, unsigned int col){
     if(row > 0 && col > 0){
-        szRow = row;
-        szCol = col;
+        this->szRow = row;
+        this->szCol = col;
     }
     else{
-        szRow = 0;
-        szCol = 0;
+        this->szRow = 0;
+        this->szCol = 0;
     }
     
-    columns = new RowAray*[szRow];
+    this->columns = new RowAray<T>*[this->szRow];
     
-    for(int i = 0; i < szRow; i++){
-        columns[i] = new RowAray(szCol);
+    for(int i = 0; i < this->szRow; i++){
+        this->columns[i] = new RowAray<T>(this->szCol);
     }
     
     //Assign values
-    for(int i = 0; i < szRow; i++){
-        for(int j = 0 ; j < szCol; j++){
-            columns[i]->setData(j,rand()%90+10);
+    for(int i = 0; i < this->szRow; i++){
+        for(int j = 0 ; j < this->szCol; j++){
+            this->columns[i]->setData(j,rand()%90+10);
         }
     }
     
 }
 
-Table::Table(const Table& obj){
+template <class T>
+Table<T>::Table(const Table& obj){
     //Copy table object
-    szRow = obj.getSzRow();
-    szCol = obj.getSzCol();
+    this->szRow = obj.getSzRow();
+    this->szCol = obj.getSzCol();
     
-    columns = new RowAray*[szRow];
+    this->columns = new RowAray<T>*[this->szRow];
     
-    for(int i = 0; i < szRow; i++){
-        columns[i] = new RowAray(szCol);
+    for(int i = 0; i < this->szRow; i++){
+        this->columns[i] = new RowAray<T>(this->szCol);
     }
     
     //Copy contents
-    for(int i = 0; i < szRow; i++){
-        for(int j = 0 ; j < szCol; j++){
-            columns[i]->setData(j,obj.getData(i,j));
+    for(int i = 0; i < this->szRow; i++){
+        for(int j = 0 ; j < this->szCol; j++){
+            this->columns[i]->setData(j,obj.getData(i,j));
         }
     }
     
 }
 
-Table::~Table(){
-    for(int i = 0; i < szRow; i++){
-        delete []columns[i];
+template <class T>
+Table<T>::~Table(){
+    for(int i = 0; i < this->szRow; i++){
+        delete this->columns[i];
     }
-    delete []columns;
+    delete []this->columns;
     
 }
 
-int Table::getData(int row, int col) const{
-    return columns[row]->getData(col);
+template <class T>
+T Table<T>::getData(int row, int col) const{
+    return this->columns[row]->getData(col);
 }
 
-void Table::setData(int row, int col, int val){
-    if(row > 0 && row < szRow && col > 0 && col < szCol){
-        columns[row]->setData(col, val);
+template <class T>
+void Table<T>::setData(int row, int col, T val){
+    if(row > 0 && row < this->szRow && col > 0 && col < this->szCol){
+        this->columns[row]->setData(col, val);
     }
 }

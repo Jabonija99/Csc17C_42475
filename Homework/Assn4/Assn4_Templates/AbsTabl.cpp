@@ -13,14 +13,17 @@
 
 #include "AbsTabl.h"
 
-int AbsTabl::getSzRow() const{
+template <class T>
+int AbsTabl<T>::getSzRow() const{
     return szRow;
 }
 
-int AbsTabl::getSzCol() const{
+template <class T>
+int AbsTabl<T>::getSzCol() const{
     return szCol;
 }
 
-int AbsTabl::getData(int row, int col) const{
+template <class T>
+T AbsTabl<T>::getData(int row, int col) const{
     return columns[row]->getData(col);
 }

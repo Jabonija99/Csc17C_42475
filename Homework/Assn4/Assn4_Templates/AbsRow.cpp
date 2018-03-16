@@ -13,11 +13,13 @@
 
 #include "AbsRow.h"
 
-int AbsRow::getSize()const{
+template <class T>
+int AbsRow<T>::getSize()const{
     return size;
 }
 
-int AbsRow::getData(int index)const{
+template <class T>
+T AbsRow<T>::getData(int index)const{
     return rowData[index];
 }
 

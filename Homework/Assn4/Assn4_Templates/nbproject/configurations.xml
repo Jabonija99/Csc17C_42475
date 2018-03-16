@@ -4,15 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>AbsRow.cpp</itemPath>
       <itemPath>AbsRow.h</itemPath>
-      <itemPath>AbsTabl.cpp</itemPath>
       <itemPath>AbsTabl.h</itemPath>
-      <itemPath>PlusTab.cpp</itemPath>
       <itemPath>PlusTab.h</itemPath>
-      <itemPath>RowAray.cpp</itemPath>
       <itemPath>RowAray.h</itemPath>
-      <itemPath>Table.cpp</itemPath>
       <itemPath>Table.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -22,6 +17,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>AbsRow.cpp</itemPath>
+      <itemPath>AbsTabl.cpp</itemPath>
+      <itemPath>PlusTab.cpp</itemPath>
+      <itemPath>RowAray.cpp</itemPath>
+      <itemPath>Table.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
