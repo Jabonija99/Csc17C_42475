@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>LinkedVector.h</itemPath>
-      <itemPath>SimpleVector.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,7 +13,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>LinkedVector.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -39,11 +37,7 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="LinkedVector.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="LinkedVector.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimpleVector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -68,11 +62,7 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="LinkedVector.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="LinkedVector.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="SimpleVector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
