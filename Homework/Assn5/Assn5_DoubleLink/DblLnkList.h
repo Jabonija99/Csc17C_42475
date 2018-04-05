@@ -5,14 +5,14 @@
  */
 
 /* 
- * File:   LinkedList.h
+ * File:   DblLnkList.h
  * Author: K99
  *
- * Created on March 22, 2018, 5:18 PM
+ * Created on March 29, 2018, 3:54 PM
  */
 
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef DBLLNKLIST_H
+#define DBLLNKLIST_H
 
 #include <cstdlib>
 #include <iostream>
@@ -22,12 +22,14 @@
 using namespace std;
 
 template <class T>
-class LinkedList{
+class DblLnkList{
     private:
         //Link structure
         struct Link{
             T data;
             Link *linkptr;
+            Link *prevptr;
+            int rank;
         };
         
         //Pointers for link
@@ -36,15 +38,17 @@ class LinkedList{
         void endLst();
         //Points found ptr to data ptr
         void fndLst(const T&);
+        //Sort function
+        void sort();
         
         
     public:
         //Constructors
-        LinkedList();
-        LinkedList(const T&);
+        DblLnkList();
+        DblLnkList(const T&);
         //Destructor
-        ~LinkedList();
-            
+        ~DblLnkList();
+        
         //Output list
         void prntLst();
         //Add to list
@@ -66,10 +70,13 @@ class LinkedList{
         //Delete value
         void delData(const T&);
         
+        //Prioritize value
+        void prioritize(const T&);
+        
 };
 
 template <class T>
-void LinkedList<T>::endLst(){
+void DblLnkList<T>::endLst(){
     temp = front;
     do{
         end = temp;
@@ -79,7 +86,7 @@ void LinkedList<T>::endLst(){
 }
 
 template <class T>
-void LinkedList<T>::fndLst(const T &value){
+void DblLnkList<T>::fndLst(const T &value){
     //Set cursor to start
     found = front;
     
@@ -97,26 +104,62 @@ void LinkedList<T>::fndLst(const T &value){
     found = NULL;
 }
 
+template <class T>
+void DblLnkList<T>::sort(){
+    bool swapped;
+    
+    do{
+        swapped = false;
+        
+        //Bubble sort
+        temp = front;
+        
+        while(temp->linkptr!=NULL){
+            //Get next value
+            next = temp->linkptr;
+            
+            //If the current value is greater
+            if(temp->data > next->data){
+                if(temp->rank == 0){
+                    //Swap
+                    T dataTemp = temp->data;
+                    temp->data = next->data;
+                    next->data = dataTemp;
+                    //Flag swap
+                    swapped = true; 
+                }
+            }
+            
+            //Point to next value
+            temp = next;
+        }
+        
+        
+    }while(swapped);
+}
 
 template <class T>
-LinkedList<T>::LinkedList(){
+DblLnkList<T>::DblLnkList(){
     front = new Link;
     front->data = 0;
     front->linkptr = NULL;
+    front->prevptr = NULL;
+    front->rank = 0;
 }
 
 template <class T>
-LinkedList<T>::LinkedList(const T&value){
+DblLnkList<T>::DblLnkList(const T&value){
     front = new Link;
     front->data = value;
     front->linkptr = NULL;
-    
+    front->prevptr = NULL;
+    front->rank = 0;
 }
 
 
 
 template <class T>
-LinkedList<T>::~LinkedList(){
+DblLnkList<T>::~DblLnkList(){
     while(front != NULL){
         temp = front->linkptr;
         delete front;
@@ -125,7 +168,7 @@ LinkedList<T>::~LinkedList(){
 }
 
 template <class T>
-void LinkedList<T>::prntLst(){
+void DblLnkList<T>::prntLst(){
     next = front;
     cout <<"Beginning of List\n"; 
     while(next != NULL){
@@ -137,21 +180,24 @@ void LinkedList<T>::prntLst(){
 }
 
 template <class T>
-void LinkedList<T>::addLst(const T& value){
+void DblLnkList<T>::addLst(const T& value){
     //Point to last link
     endLst();
     //Create new link
     Link *add = new Link;
     add->data = value;
     add->linkptr = NULL;
+    add->prevptr = end;
+    add->rank = 0;
 
     //Point to the new end of the list
     end->linkptr = add;
     
+    sort();
 }
 
 template <class T>
-int LinkedList<T>::findLst(const T& value){
+int DblLnkList<T>::findLst(const T& value){
     //Initialize index counter
     int i = 0;
     
@@ -174,7 +220,7 @@ int LinkedList<T>::findLst(const T& value){
 }
 
 template <class T>
-int LinkedList<T>::cntLst(){
+int DblLnkList<T>::cntLst(){
     //Init index counter
     int i=0;
     
@@ -195,7 +241,7 @@ int LinkedList<T>::cntLst(){
 }
 
 template <class T>
-T LinkedList<T>::getObj(int index){
+T DblLnkList<T>::getObj(int index){
     //Init counter
     int i = 0;
     
@@ -220,7 +266,7 @@ T LinkedList<T>::getObj(int index){
 
 
 template <class T>
-void LinkedList<T>::insBef(const T& index, const T& value){
+void DblLnkList<T>::insBef(const T& index, const T& value){
     //Point to data
     fndLst(index);
     
@@ -232,12 +278,15 @@ void LinkedList<T>::insBef(const T& index, const T& value){
             Link* add = new Link;
             add->data = value;
             add->linkptr = found;
+            add->rank = 0;
             
             //Find link before found ptr
             while(temp->linkptr != found){
                 temp = temp->linkptr;
             }
 
+            //Point to previous link
+            add->prevptr = temp;
             //Point to other link
             temp->linkptr = add;
         }
@@ -249,7 +298,7 @@ void LinkedList<T>::insBef(const T& index, const T& value){
 }
 
 template <class T>
-void LinkedList<T>::insAft(const T& index, const T& value){
+void DblLnkList<T>::insAft(const T& index, const T& value){
     //Point to data
     fndLst(index);
     
@@ -261,6 +310,8 @@ void LinkedList<T>::insAft(const T& index, const T& value){
         Link* add = new Link;
         add->data = value;
         add->linkptr = next;
+        add->prevptr = found;
+        add->rank = 0;
         
         //Point to added link
         found->linkptr = add;
@@ -269,7 +320,7 @@ void LinkedList<T>::insAft(const T& index, const T& value){
 }
 
 template <class T>
-void LinkedList<T>::insBeg(const T& value){
+void DblLnkList<T>::insBeg(const T& value){
     //Point to first value
     temp = front;
     
@@ -277,13 +328,15 @@ void LinkedList<T>::insBeg(const T& value){
     Link *add = new Link;
     add->data = value;
     add->linkptr = temp;
+    add->prevptr = NULL;
+    add->rank = 0;
     
     //Point to new front
     front = add;
 }
 
 template <class T>
-void LinkedList<T>::delData(const T& value){
+void DblLnkList<T>::delData(const T& value){
     //Point to data
     fndLst(value);
     
@@ -295,9 +348,10 @@ void LinkedList<T>::delData(const T& value){
         //if found does not point to front
         if(temp != found){
             //Find link to found
-            while(temp->linkptr != found){
-                temp = temp->linkptr;
-            }
+            //while(temp->linkptr != found){
+                //temp = temp->linkptr;
+            //}
+            temp = found->prevptr;
             
             //Assign next link in chain
             next = found->linkptr;
@@ -307,6 +361,9 @@ void LinkedList<T>::delData(const T& value){
 
             //Link  to next ptr
             temp->linkptr = next;
+            
+            if(next!=NULL)
+                next->prevptr = temp;
         }
         else{
             //If front is deleted
@@ -319,5 +376,23 @@ void LinkedList<T>::delData(const T& value){
     }
 }
 
-#endif /* LINKEDLIST_H */
+template <class T>
+void DblLnkList<T>::prioritize(const T& val){
+    fndLst(val);
+    
+    if(found != NULL){
+        T dataTemp = found->data;
+        delData(dataTemp);
+        insBeg(dataTemp);
+        
+        //Set priority
+        front->rank = 1;
+        
+        sort();
+    }
+    
+}
+
+
+#endif /* DBLLNKLIST_H */
 

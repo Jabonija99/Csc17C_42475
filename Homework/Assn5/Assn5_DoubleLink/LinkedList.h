@@ -8,7 +8,7 @@
  * File:   LinkedList.h
  * Author: K99
  *
- * Created on March 22, 2018, 5:18 PM
+ * Created on March 29, 2018, 3:53 PM
  */
 
 #ifndef LINKEDLIST_H
@@ -26,8 +26,9 @@ class LinkedList{
     private:
         //Link structure
         struct Link{
-            T data;
-            Link *linkptr;
+            T data;         //Data
+            Link *linkptr;  //Link Pointer
+            int rank;       //Priority rank
         };
         
         //Pointers for link
@@ -36,15 +37,21 @@ class LinkedList{
         void endLst();
         //Points found ptr to data ptr
         void fndLst(const T&);
+        //Sort function
+        void sort();
         
         
     public:
+        
+        
         //Constructors
         LinkedList();
         LinkedList(const T&);
+        //Copy constructor
+        LinkedList(const LinkedList&);
         //Destructor
         ~LinkedList();
-            
+        
         //Output list
         void prntLst();
         //Add to list
@@ -65,6 +72,9 @@ class LinkedList{
         
         //Delete value
         void delData(const T&);
+        
+        //Prioritize value
+        void prioritize(const T&);
         
 };
 
@@ -97,12 +107,49 @@ void LinkedList<T>::fndLst(const T &value){
     found = NULL;
 }
 
+template <class T>
+void LinkedList<T>::sort(){
+    bool swapped;
+    
+    do{
+        swapped = false;
+        
+        //Bubble sort
+        temp = front;
+        
+        while(temp->linkptr!=NULL){
+            
+            //Get next value
+            next = temp->linkptr;
+            
+            //If the current value is greater
+            if(temp->data > next->data){  
+                if(temp->rank == 0){
+                    //Swap
+                    T dataTemp = temp->data;
+                    temp->data = next->data;
+                    next->data = dataTemp;
+                    //Flag swap
+                    swapped = true; 
+                }
+            }
+            
+            //Point to next value
+            temp = next;
+            
+        }
+        
+        
+    }while(swapped);
+}
+
 
 template <class T>
 LinkedList<T>::LinkedList(){
     front = new Link;
     front->data = 0;
     front->linkptr = NULL;
+    front->rank = 0;
 }
 
 template <class T>
@@ -110,10 +157,25 @@ LinkedList<T>::LinkedList(const T&value){
     front = new Link;
     front->data = value;
     front->linkptr = NULL;
-    
+    front->rank = 0;
 }
 
-
+template <class T>
+LinkedList<T>::LinkedList(const LinkedList &obj){
+    //Copy constructor
+    if(obj != NULL){
+        front = new Link;
+        front->data = obj.front->data;
+        front->linkptr = NULL;
+        front->rank = 0;
+        
+        next = obj.front->linkptr;
+        while(next != NULL){
+            addLst(next->data);
+            next = next->linkptr;
+        }
+    }
+}
 
 template <class T>
 LinkedList<T>::~LinkedList(){
@@ -129,8 +191,7 @@ void LinkedList<T>::prntLst(){
     next = front;
     cout <<"Beginning of List\n"; 
     while(next != NULL){
-        if(next->data != -1)
-            cout <<next->data <<endl;
+        cout <<next->data <<endl;
         next = next->linkptr;
     }
     cout <<"End of List\n\n";
@@ -144,10 +205,12 @@ void LinkedList<T>::addLst(const T& value){
     Link *add = new Link;
     add->data = value;
     add->linkptr = NULL;
+    add->rank = 0;
 
     //Point to the new end of the list
     end->linkptr = add;
     
+    sort();
 }
 
 template <class T>
@@ -232,6 +295,7 @@ void LinkedList<T>::insBef(const T& index, const T& value){
             Link* add = new Link;
             add->data = value;
             add->linkptr = found;
+            add->rank = 0;
             
             //Find link before found ptr
             while(temp->linkptr != found){
@@ -261,6 +325,7 @@ void LinkedList<T>::insAft(const T& index, const T& value){
         Link* add = new Link;
         add->data = value;
         add->linkptr = next;
+        add->rank = 0;
         
         //Point to added link
         found->linkptr = add;
@@ -277,6 +342,7 @@ void LinkedList<T>::insBeg(const T& value){
     Link *add = new Link;
     add->data = value;
     add->linkptr = temp;
+    add->rank = 0;
     
     //Point to new front
     front = add;
@@ -292,7 +358,7 @@ void LinkedList<T>::delData(const T& value){
         //Point to front
         temp = front;
         
-        //if found does not point to front
+        //If found does not point to front
         if(temp != found){
             //Find link to found
             while(temp->linkptr != found){
@@ -318,6 +384,24 @@ void LinkedList<T>::delData(const T& value){
         }
     }
 }
+
+template <class T>
+void LinkedList<T>::prioritize(const T& val){
+    fndLst(val);
+    
+    if(found != NULL){
+        T dataTemp = found->data;
+        delData(dataTemp);
+        insBeg(dataTemp);
+        
+        //Set priority
+        front->rank = 1;
+        
+        sort();
+    }
+    
+}
+
 
 #endif /* LINKEDLIST_H */
 
