@@ -1,0 +1,19 @@
+Project 
+
+*Game ideas
+-Minesweeper
+-Battleship
+
+*Utilize STL Library
+-maps
+-sets
+-lists
+-stacks
+-queues
+-Iterators and Algorithms.
+
+*Show as many concepsts as possible
+Important:
+-Algorithm
+-Iterators
+-Containers

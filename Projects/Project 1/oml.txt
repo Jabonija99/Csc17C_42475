@@ -1,0 +1,45 @@
+OML
+
+struct Coor{
+	char y;
+	int x;
+};
+
+Class Grid{
+
+-length: int
+-width: int
+-grid: string**
+
++Grid(int,int);
++insAt(char, int, string) : void
++insFrom(char, int, char, int, string) : void
+
++getAt(char, int): string
++getFrom(char, int, char, int): string
+
+};
+
+Class Board{
+
+-board1: Grid
+-board2: Grid
+
++Board()
++setBlck(char, int) : bool
++setCar(char, int) : bool
++setBat(char, int) : bool
++setCru(char, int) : bool
++setSub(char, int) : bool
++setHit(char, int) : bool
+
++getBlck(char, int) : string
+};
+
+
+
+Class Game{
+
+
+};
+
