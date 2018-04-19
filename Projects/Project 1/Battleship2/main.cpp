@@ -13,13 +13,24 @@
 
 #include <cstdlib>
 
+#include "Grid.h"
+#include "Board.h"
+#include "Game.h"
+
 using namespace std;
 
 /*
  * 
  */
-int main(int argc, char** argv) {
 
+int main(int argc, char** argv) {
+    srand(time(0));
+    
+    //Initialize game
+    Game game;
+    game.init();
+   
+    
     return 0;
 }
 

@@ -83,6 +83,8 @@ void Game::start(){
         cout <<"Player board\n";
         player->output();
         
+        cout <<endl <<endl;
+        enemy->output();
         bool valid;
         do{
             valid = true;

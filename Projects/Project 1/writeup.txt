@@ -1,0 +1,16 @@
+Project 1 Csc17c (42475): Battleship Game 
+=====================================
+By:Jarone Jabonillo
+=====================================
+
+Intro:
+* 	This is my first project for Csc17. This project displays the use of iterators, containers, and algorithms through the game of Battleship.
+
+Summary:
+* 	This program is written in about 1195 lines of code. Using vector containers to contain the grid for the game, I iterator through the container to assign, replace, and output data within the grid. 
+	Three classes were involved in the creation of this project and about eight private variables to hold the data. Creation of the grid and getting it to work with iterators took the longest part of the assignment since it involved researching new concepts. Overall the project wasn't difficult, but the task proved time consuming.
+
+Description:
+*	When I first began the assignment, I decided to go through it using previously learned methods such as 2D arrays and for loops to consruct the initial Grid class. Using the grid as a base, I created the Board class in order to hold both the user's and enemy's respective defending and attacking grids. The Game class handled all the user input and the functionality of the Board class to detect if the game has ended.
+	Sample Input/Output
+	
