@@ -71,9 +71,9 @@ int main(int argc, char** argv) {
     
     player.output();*/
     
-    
+    srand(time(0));
     Game game;
-    game.welcome();
+    game.init();
     
     
     return 0;

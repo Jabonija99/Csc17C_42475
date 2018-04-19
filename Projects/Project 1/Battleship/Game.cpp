@@ -18,6 +18,7 @@
 #include <cstdlib>
 
 Game::Game() {
+    srand(time(0));
     player = new Board();
     enemy = new Board();
 }
@@ -30,20 +31,19 @@ Game::~Game() {
 
 
 
-void Game::welcome(){
+void Game::init(){
     bool quit = false;
     do{
         //Enter ships
         enterCar();
-        //enterBat();
-        //enterCru();
-        //enterSub();
-        //enterDes();
+        enterBat();
+        enterCru();
+        enterSub();
+        enterDes();
 
         //Start game
         start();
-        
-        player->output();
+ 
         
         //Prompt exit
         cout <<"Would you like to exit (y/n)?"; 
@@ -51,6 +51,13 @@ void Game::welcome(){
         cin >> ans;
         if(ans[0] == 'y' || ans[0] == 'Y'){
             quit = true;
+        }
+        else{
+            player->gtBdDef()->clear();
+            player->gtBdAtt()->clear();
+            
+            enemy->gtBdDef()->clear();
+            enemy->gtBdAtt()->clear();
         }
 
     
@@ -63,21 +70,78 @@ void Game::welcome(){
 void Game::start(){
     bool gameover = false;
     string ans;
+    
+    //Set enemy board
+    enemy->setRand();
+    
+    //Begin game
     do{
         cls();
+        cout <<"Enemy board\n";
+        enemy->output();
+        //Output player
+        cout <<"Player board\n";
         player->output();
         
+        //Prompt attack
         cout <<"Enter a target(ex. A0):";
         cin >> ans;
 
+        //Receive input
         char alph1 = ans[0];
         int val1 = ans[1]-'0';
 
+        //Set attack and prompt
         if(player->hit(alph1,val1,enemy->gtBdDef())){
+            cls();
             cout <<"Target Hit!\n";
+            delay(4);
+            cls();
         }
-            
+        else{
+            cls();
+            cout <<"Missed!\n";
+            delay(4);
+            cls();
+        }
         
+        //Enemy turn
+        if(!enemy->isElim()){
+            //Enemy attacks random point
+            int y1 = rand()%10;
+            int x1 = rand()%10;
+            
+            char alph = enemy->convert(y1);
+            if(enemy->hit(alph,x1,player->gtBdDef())){
+                cls();
+                cout <<"Enemy Hit!\n";
+                delay(4);
+                cls();
+            }
+            else{
+                cls();
+                cout <<"Enemy missed!\n";
+                delay(4);
+                cls();
+            }
+            
+            if(player->isElim()){
+                cls();
+                player->output();
+                cout <<"You Lose!\n";
+                delay(6);
+                cls();
+                gameover = true;
+            }
+        }
+        else{
+            cls();
+            cout <<"You Win!\n";
+            delay(6);
+            cls();
+            gameover = true;
+        }
+       
         
     }while(!gameover);
 }

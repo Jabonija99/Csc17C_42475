@@ -23,7 +23,7 @@ public:
     ~Game();
     
     
-    void welcome();
+    void init();
     void start();
     
     

@@ -43,9 +43,9 @@ public:
     
     void output();
     void clear();
+    bool isEmpty();
     
     int convert(char);
-    char convert(int);
     
 private:
     unsigned short int length, width;

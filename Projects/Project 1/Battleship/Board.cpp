@@ -12,8 +12,11 @@
  */
 
 #include "Board.h"
+#include <cstdlib>
 
 Board::Board() {
+    srand(time(0));
+    
     ships = new string[5];
     ships[0] = "C"; //Carrier size 5
     ships[1] = "B"; //Battle size 4
@@ -179,7 +182,106 @@ bool Board::setShip(char alph1, int val1, char alph2,
 }
 
 bool Board::setRand(){
+    srand(time(0));
     
+    bool valid = true;
+    
+    //Random coordinates
+    int y1,x1,y2,x2;
+    
+    char alph1;
+    char alph2;
+    
+    try{
+        bool accepted = false;
+        /*
+        //Set carrier
+        while(!accepted){
+            //Get rand values
+            y1 = rand()%10;
+            x1 = rand()%10;
+            y2 = rand()%10;
+            x2 = rand()%10;
+
+            alph1 = convert(y1);
+            alph2 = convert(y2);
+            
+            
+            //Set carrier
+            accepted = setCar(alph1, x1, alph2, x2);
+        }
+        
+        //Set Battleship
+        accepted = false;
+        while(!accepted){
+            //Get rand values
+            y1 = rand()%10;
+            x1 = rand()%10;
+            y2 = rand()%10;
+            x2 = rand()%10;
+
+            alph1 = convert(y1);
+            alph2 = convert(y2);
+            
+            
+            //Set battleship
+            accepted = setBat(alph1, x1, alph2, x2);
+        }
+        
+        
+        //Set Cruiser
+        accepted = false;
+        while(!accepted){
+            //Get rand values
+            y1 = rand()%10;
+            x1 = rand()%10;
+            y2 = rand()%10;
+            x2 = rand()%10;
+
+            alph1 = convert(y1);
+            alph2 = convert(y2);
+            
+            //Set cruiser
+            accepted = setCru(alph1, x1, alph2, x2);
+        }
+        
+        //Set submarine
+        accepted = false;
+        while(!accepted){
+            //Get rand values
+            y1 = rand()%10;
+            x1 = rand()%10;
+            y2 = rand()%10;
+            x2 = rand()%10;
+
+            alph1 = convert(y1);
+            alph2 = convert(y2);
+            
+            //Set submarine
+            accepted = setSub(alph1, x1, alph2, x2);
+        }*/
+        
+        //Set destroyer
+        accepted = false;
+        while(!accepted){
+            //Get rand values
+            y1 = rand()%10;
+            x1 = rand()%10;
+            y2 = rand()%10;
+            x2 = rand()%10;
+
+            alph1 = convert(y1);
+            alph2 = convert(y2);
+            
+            //Set destroyer
+            accepted = setDes(alph1, x1, alph2, x2);
+        }
+    }
+    catch(...){
+        valid = false;
+    }
+    
+    return valid;
 }
 
 
@@ -200,13 +302,25 @@ bool Board::hit(char alph, int val, Grid* enemy){
     bool detected = false;
     if(enemy->isFilled(alph, val)){
         boardAtt->insAt(alph,val,"X");
+        enemy->insAt(alph,val,"X");
         detected = true;
     }
     else{
         boardAtt->insAt(alph,val,"O");
+        enemy->insAt(alph,val,"O");
     }
     
     return detected;
+}
+
+void Board::isHit(char alph, int val){
+    if(boardDef->isFilled(alph,val)){
+        boardDef->insAt(alph,val, "X");
+    }
+    else{
+        boardDef->insAt(alph, val, "O");
+    }
+
 }
 
 string Board::gtAttAt(char alph, int val){
@@ -217,6 +331,18 @@ string Board::gtDefAt(char alph, int val){
     return boardDef->getAt(alph, val);
 }
 
+
+bool Board::isElim(){
+    //Checks to see if any ships remain
+    bool check = false;
+    
+    if(boardDef->isEmpty()){
+        check = true;
+    }
+    
+    return check;
+}
+
 void Board::output(){
     cout <<"=============Enemy================" <<endl;
     boardAtt->output();
@@ -224,4 +350,40 @@ void Board::output(){
             <<"===============Ships=============="<<endl;
     boardDef->output();
     cout <<"==================================" <<endl;
+}
+
+char Board::convert(int val){
+    if(val == 0){
+        return 'a';
+    }
+    else if(val == 1){
+        return 'b';
+    }
+    else if(val == 2){
+        return 'c';
+    }
+    else if(val == 3){
+        return 'd';
+    }
+    else if(val == 4){
+        return 'e';
+    }
+    else if(val == 5){
+        return 'f';
+    }
+    else if(val == 6){
+        return 'g';
+    }
+    else if(val == 7){
+        return 'h';
+    }
+    else if(val == 8){
+        return 'i';
+    }
+    else if(val == 9){
+        return 'j';
+    }
+    else{
+        return 'z';
+    }
 }

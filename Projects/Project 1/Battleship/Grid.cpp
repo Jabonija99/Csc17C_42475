@@ -256,7 +256,8 @@ bool Grid::isFilled(char alph, int val){
     
     for(int i = 0 ; i < length; ++i){
         for(int j = 0 ; j < width; ++j){
-            if(grid[y][x] != "[ ]"){
+            if(grid[y][x] != "[ ]" && grid[y][x] != "[X]"
+                    && grid[y][x] != "[O]" ){
                 filled = true;
             }
         }
@@ -269,7 +270,8 @@ bool Grid::isFilled(int y, int x){
     bool filled = false;
     
     
-    if(grid[y][x] != "[ ]"){
+    if(grid[y][x] != "[ ]" && grid[y][x] != "[X]"
+                    && grid[y][x] != "[O]" ){
         filled = true;
     }
        
@@ -333,6 +335,20 @@ void Grid::clear(){
     }
 }
 
+bool Grid::isEmpty(){
+    bool empty = true;
+    for(int i = 0; i < length; ++i){
+        for(int j = 0 ; j < width; ++j){
+            if(grid[i][j] != "[ ]" && 
+                    grid[i][j] !="[X]" && grid[i][j] != "[O]"){
+                empty = false;
+            }
+        }
+    }
+    
+    return empty;
+}
+
 int Grid::convert(char alph){
     if(alph == 'A' || alph == 'a'){
         return 0;
@@ -366,41 +382,5 @@ int Grid::convert(char alph){
     }
     else{
         return -1;
-    }
-}
-
-char Grid::convert(int val){
-    if(val = 0){
-        return 'a';
-    }
-    else if(val = 1){
-        return 'b';
-    }
-    else if(val = 2){
-        return 'c';
-    }
-    else if(val = 3){
-        return 'd';
-    }
-    else if(val = 4){
-        return 'e';
-    }
-    else if(val = 5){
-        return 'f';
-    }
-    else if(val = 6){
-        return 'g';
-    }
-    else if(val = 7){
-        return 'h';
-    }
-    else if(val = 8){
-        return 'i';
-    }
-    else if(val = 9){
-        return 'j';
-    }
-    else{
-        return 'z';
     }
 }

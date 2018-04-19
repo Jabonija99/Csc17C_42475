@@ -36,19 +36,26 @@ public:
     
     bool hit(char, int);
     bool hit(char, int, Grid*);
+    void isHit(char, int);
     
     string gtAttAt(char, int);
     string gtDefAt(char, int);
     
     Grid* gtBdDef(){return boardDef;}
+    Grid* gtBdAtt(){return boardAtt;}
+    
+    bool isElim();
     
     void output();
+    
+    char convert(int);
     
 private:
     Grid* boardAtt;
     Grid* boardDef;
     
     string* ships;
+    
 
 };
 
