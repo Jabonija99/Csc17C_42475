@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   main.cpp
- * Author: K99
- *
- * Created on April 21, 2018, 5:43 PM
- */
 
 #include <cstdlib>
 #include <iostream>
@@ -19,7 +13,7 @@
 using namespace std;
 
 /*
- * 
+ * Problem 8: Dice probability
  */
 int main(int argc, char** argv) {
     
