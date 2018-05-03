@@ -36,6 +36,7 @@ int main(int argc, char** argv) {
     int *arr;
     bool first;
     
+    //Loop from power 10 -> 25
     while(xMin<=xMax){
         n = pow(2,xMin);
         arr = new int[n];
@@ -79,7 +80,7 @@ void hash(int* a, int n, bool&first){
 void output(int* a, int size){
     int max = 0;
     for(int i = 0 ; i < size; i++){
-       /*
+       /* Output values
         cout <<a[i] <<" ";
         
         if(i%11==10)
