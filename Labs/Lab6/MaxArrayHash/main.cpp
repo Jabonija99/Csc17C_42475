@@ -22,7 +22,7 @@ using namespace std;
  * 
  */
 
-void hash(int*, int, bool&);
+void hashed(int*, int, bool&);
 void output(int*, int);
 bool check(int*,int);
 
@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
         
         //Hash 100 objects
         for(int i = 0; i < n; i++){
-            hash(arr,n,first);
+            hashed(arr,n,first);
         }
     
         
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 }
 
 
-void hash(int* a, int n, bool&first){
+void hashed(int* a, int n, bool&first){
     int index = rand()%n;
     
     if(check(a, index) && first){
@@ -80,13 +80,6 @@ void hash(int* a, int n, bool&first){
 void output(int* a, int size){
     int max = 0;
     for(int i = 0 ; i < size; i++){
-       /* Output values
-        cout <<a[i] <<" ";
-        
-        if(i%11==10)
-            cout <<endl;
-        */
-        
         if(a[i] > max)
             max = a[i];
     }
