@@ -46,12 +46,15 @@ void prntLvl(node*);
  */
 int main(int argc, char** argv) {
     node *root                = newNode(8);
+    
     root->left                = newNode(4);
     root->right               = newNode(12);
+    
     root->left->left          = newNode(2);
     root->left->right         = newNode(6);
     root->right->left         = newNode(10);
     root->right->right        = newNode(14);
+    
     root->left->left->left    = newNode(1);
     root->left->left->right   = newNode(3);
     root->left->right->left   = newNode(5);
@@ -141,7 +144,7 @@ void prntLvl(node* n){
         for(int i = 0; i < 3; ++i){
             
         }
-    
+        end = true;
     }
     
     
