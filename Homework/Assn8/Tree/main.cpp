@@ -12,7 +12,6 @@
  */
 
 #include <cstdlib>
-
 #include "tree.h"
 
 using namespace std;

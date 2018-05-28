@@ -8,37 +8,49 @@
  * File:   Tree.h
  * Author: K99
  *
- * Created on May 22, 2018, 4:18 PM
+ * Created on May 24, 2018, 12:14 AM
  */
 
 #ifndef TREE_H
 #define TREE_H
 
+
+#include <vector>
 #include "node.h"
 
-class Tree{
+class Tree {
 public:
-    Tree();
+    Tree(int);
     virtual ~Tree();
     
-    node* newNode(int);
+    //Add data to tree
+    void insert(int);
+    void delData(int);
+    node* findVal(int);
     
-    
+    //Output functions
     void outPst();
     void outIn();
     void outPre();
     void outLvl();
     
-    
 private:
+    //Tree root
     node* root;
-    int m;
     
-    void prntPst(node*);
-    void prntIn(node*);
-    void prntPre(node*);
-    void prntLvl(node*);
-
+    //adds node
+    node* newNode(int);
+    
+    //Recursive functions
+    void recPst(node*); 
+    void recIn(node*);
+    void recPre(node*);
+    
+    //Recursive deletion
+    node* recDel(node*, int);
+    node* minN(node*);
+    
+    
 };
 
 #endif /* TREE_H */
